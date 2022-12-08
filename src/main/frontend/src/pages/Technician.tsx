@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import TechNavBar from "../components/TechNavBar";
+import DispatchCard from "../components/DispatchCard";
 const Technician = () => {
     const { technician } = useParams();
     const [orders, setOrders] = useState([]);
@@ -24,7 +25,7 @@ const Technician = () => {
                 <div className="flex mt-4 -ml-3 space-x-3">
                     <div className="ml-auto order-2 -mt-4">
                         <button className="px-12 bg-transparent hover:bg-blue-100 text-blue-700 font-semibold py-3 border-2 border-blue-700 rounded">
-                                View All Dispatches
+                            View All Dispatches
                         </button>
                     </div>
                     {[1, 2, 3, 4].map((idx, item) => (
@@ -64,8 +65,8 @@ const Technician = () => {
                     </span>
                 </div>
                 <div className="mt-6 grid grid-cols-4 space-x-4">
-                    <div className="shadow-md flex flex-col px-10 py-8">
-                        <div className="flex justify-center items-center">
+                    <DispatchCard
+                        svg={
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -80,35 +81,15 @@ const Technician = () => {
                                     d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"
                                 />
                             </svg>
-                        </div>
-                        <p className="text-2xl font-bold">2</p>
-                        <div className="flex justify-center items-center">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                fill="#b02121"
-                                className="w-6 h-6"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
-                            <p className="font-semibold text-[#b02121]">
-                                Unscheduled
-                            </p>
-                        </div>
-                        <p>No appointment set within 24 hours of creation.</p>
-                        <button
-                            className="mt-auto
-                        bg-transparent hover:bg-blue-100 text-blue-700 font-semibold py-1 border-2 border-blue-700 rounded"
-                        >
-                            View Dispatches
-                        </button>
-                    </div>
-                    <div className="shadow-md flex flex-col px-10 py-8">
-                        <div className="flex justify-center items-center">
+                        }
+                        numberOfItems={2}
+                        alertMessage={"Unscheduled"}
+                        description={
+                            "No appointment set within 24 hours of creation."
+                        }
+                    />
+                    <DispatchCard
+                        svg={
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -123,37 +104,15 @@ const Technician = () => {
                                     d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
                                 />
                             </svg>
-                        </div>
-                        <p className="text-2xl font-bold">1</p>
-                        <div className="flex justify-center items-center">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                fill="#b02121"
-                                className="w-6 h-6"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
-                            <p className="font-semibold text-[#b02121]">
-                                Status Update Needed
-                            </p>
-                        </div>
-                        <p>
-                            No status updates set within 48 hours of creation.
-                        </p>
-                        <button
-                            className="mt-auto
-                        bg-transparent hover:bg-blue-100 text-blue-700 font-semibold py-1 border-2 border-blue-700 rounded"
-                        >
-                            View Dispatches
-                        </button>
-                    </div>
-                    <div className="shadow-md flex flex-col px-4 py-8">
-                        <div className="flex justify-center items-center">
+                        }
+                        numberOfItems={1}
+                        alertMessage={"Status Update Needed"}
+                        description={
+                            "No status updates set within 48 hours of creation."
+                        }
+                    />
+                    <DispatchCard
+                        svg={
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -168,33 +127,36 @@ const Technician = () => {
                                     d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
                                 />
                             </svg>
-                        </div>
-                        <p className="text-2xl font-bold">1</p>
-                        <div className="flex justify-center items-center">
+                        }
+                        numberOfItems={1}
+                        alertMessage={"Open Longer than Expected"}
+                        description={
+                            "Jobs that have been open for more than a trade's average time period."
+                        }
+                    />
+                    <DispatchCard
+                        svg={
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
                                 viewBox="0 0 24 24"
-                                fill="#b02121"
+                                strokeWidth={1.5}
+                                stroke="currentColor"
                                 className="w-6 h-6"
                             >
                                 <path
-                                    fillRule="evenodd"
-                                    d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
-                                    clipRule="evenodd"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
                                 />
                             </svg>
-                            <p className="font-semibold text-[#b02121]">
-                                Open Longer than Expected
-                            </p>
-                        </div>
-                        <p>
-                            Jobs that have been open for more than a trade's
-                            average time period.
-                        </p>
-                        <button className="bg-transparent mt-auto hover:bg-blue-100 text-blue-700 font-semibold py-1 border-2 border-blue-700 rounded">
-                            View Dispatches
-                        </button>
-                    </div>
+                        }
+                        numberOfItems={0}
+                        alertMessage={"Autho Status Updated"}
+                        description={
+                            "Jobs that have been approved or rejected from authorization and require follow up."
+                        }
+                    />
                     <div className="shadow-md flex flex-col px-10 py-8">
                         <div className="flex justify-center items-center">
                             <svg
