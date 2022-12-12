@@ -1,8 +1,8 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import TechNavBar from "../components/TechNavBar";
-import DispatchCard from "../components/DispatchCard";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import TechNavBar from '../components/TechNavBar';
+import DispatchCard from '../components/DispatchCard';
 const Technician = () => {
     const { technician } = useParams();
     const [orders, setOrders] = useState([]);
@@ -24,9 +24,12 @@ const Technician = () => {
                 </p>
                 <div className="flex mt-4 -ml-3 space-x-3">
                     <div className="ml-auto order-2 -mt-4">
-                        <button className="px-12 bg-transparent hover:bg-blue-100 text-blue-700 font-semibold py-3 border-2 border-blue-700 rounded">
+                        <Link
+                            to={`/dispatchlist/${technician}`}
+                            className="px-12 bg-transparent hover:bg-blue-100 text-blue-700 font-semibold py-3 border-2 border-blue-700 rounded"
+                        >
                             View All Dispatches
-                        </button>
+                        </Link>
                     </div>
                     {[1, 2, 3, 4].map((idx, item) => (
                         <div>
@@ -83,9 +86,9 @@ const Technician = () => {
                             </svg>
                         }
                         numberOfItems={2}
-                        alertMessage={"Unscheduled"}
+                        alertMessage={'Unscheduled'}
                         description={
-                            "No appointment set within 24 hours of creation."
+                            'No appointment set within 24 hours of creation.'
                         }
                     />
                     <DispatchCard
@@ -106,9 +109,9 @@ const Technician = () => {
                             </svg>
                         }
                         numberOfItems={1}
-                        alertMessage={"Status Update Needed"}
+                        alertMessage={'Status Update Needed'}
                         description={
-                            "No status updates set within 48 hours of creation."
+                            'No status updates set within 48 hours of creation.'
                         }
                     />
                     <DispatchCard
@@ -129,7 +132,7 @@ const Technician = () => {
                             </svg>
                         }
                         numberOfItems={1}
-                        alertMessage={"Open Longer than Expected"}
+                        alertMessage={'Open Longer than Expected'}
                         description={
                             "Jobs that have been open for more than a trade's average time period."
                         }
@@ -152,138 +155,13 @@ const Technician = () => {
                             </svg>
                         }
                         numberOfItems={0}
-                        alertMessage={"Autho Status Updated"}
+                        alertMessage={'Autho Status Updated'}
                         description={
-                            "Jobs that have been approved or rejected from authorization and require follow up."
+                            'Jobs that have been approved or rejected from authorization and require follow up.'
                         }
                     />
-                    <div className="shadow-md flex flex-col px-10 py-8">
-                        <div className="flex justify-center items-center">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth={1.5}
-                                stroke="currentColor"
-                                className="w-6 h-6"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                                />
-                            </svg>
-                        </div>
-                        <p className="text-2xl font-bold">0</p>
-                        <div className="flex justify-center items-center">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                fill="#21b05a"
-                                className="w-6 h-6"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
-
-                            <p className="font-semibold text-[##21b05a]">
-                                Autho Status Updated
-                            </p>
-                        </div>
-                        <p>
-                            Jobs that have been approved or rejected from
-                            authorization and require follow up.
-                        </p>
-                        {/* <button className="bg-transparent hover:bg-blue-100 text-blue-700 font-semibold py-1 border-2 border-blue-700 rounded">
-                            View Dispatches
-                        </button> */}
-                    </div>
                 </div>
             </div>
-            {/* <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" className="py-3 px-6">
-                            Name
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                            Street
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                            Unit
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                            Zip
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                            Phone
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                            Job type
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                            Date
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                            Time
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                            Priority
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                            Notes
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                            Action
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {orders.map((order: any, index) => (
-                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th
-                                scope="row"
-                                className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                            >
-                                {order.name}
-                            </th>
-                            <td className="py-4 px-6">{order.street}</td>
-                            <td className="py-4 px-6">{order.unit}</td>
-                            <td className="py-4 px-6">{order.zip}</td>
-                            <td className="py-4 px-6">{order.phone}</td>
-                            <td className="py-4 px-6">{order.job_type}</td>
-                            <td className="py-4 px-6">{order.date}</td>
-                            <td className="py-4 px-6">{order.time}</td>
-                            <td className="py-4 px-6">
-                                <p
-                                    className={`font-bold
-                                        ${
-                                            order.priority === "High"
-                                                ? "text-red-600"
-                                                : order.priority === "Medium"
-                                                ? "text-orange-300"
-                                                : "text-green-600"
-                                        }`}
-                                >
-                                    {order.priority}
-                                </p>
-                            </td>
-                            <td className="py-4 px-6">{order.notes}</td>
-                            <td className="py-4 px-6">
-                                <Link
-                                    to={`/vieworder/${order.id}`}
-                                    className="align-left flex text-white bg-gray-400 font-medium rounded-lg text-sm px-6 py-2 text-center mr-4 mb-2"
-                                >
-                                    View
-                                </Link>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table> */}
         </div>
     );
 };

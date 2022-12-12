@@ -1,5 +1,5 @@
-import React from "react";
-
+import React from 'react';
+import { Link } from 'react-router-dom';
 const TechNavBar = () => {
     return (
         <div>
@@ -18,7 +18,7 @@ const TechNavBar = () => {
                         />
                     </svg>
                     <span className="ml-3 text-xl font-extrabold">
-                        Contractor Portal
+                        <Link to={`/`}>Contractor Portal</Link>
                     </span>
                     <ul className="flex flex-row space-x-8 ml-6 text-lg font-semibold">
                         <li
