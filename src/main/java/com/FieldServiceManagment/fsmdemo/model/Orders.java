@@ -23,6 +23,7 @@ public class Orders {
     private String technician;
     private String tags;
     private String notes;
+    private String status;
 
     public long getId() {
         return id;
@@ -142,6 +143,12 @@ public class Orders {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 }

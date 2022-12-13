@@ -1,23 +1,24 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 const CustomerForm = () => {
     let navigate = useNavigate();
     const [order, setOrder] = useState({
-        name: "",
-        street: "",
-        unit: "",
-        zip: "",
-        phone: "",
-        job_type: "",
-        business_unit: "",
-        date: "",
-        time: "",
-        marketing_campaign: "",
-        priority: "",
-        technician: "",
-        tags: "",
-        notes: "",
+        name: '',
+        street: '',
+        unit: '',
+        zip: '',
+        phone: '',
+        job_type: '',
+        business_unit: '',
+        date: '',
+        time: '',
+        marketing_campaign: '',
+        priority: '',
+        technician: '',
+        tags: '',
+        notes: '',
+        status: 'new',
     });
     const {
         name,
@@ -34,6 +35,7 @@ const CustomerForm = () => {
         technician,
         tags,
         notes,
+        status,
     } = order;
     const onInputChange = (e: any) => {
         setOrder({
@@ -43,8 +45,8 @@ const CustomerForm = () => {
     };
     const onSubmit = async (e: any) => {
         e.preventDefault();
-        await axios.post("http://localhost:8080/order", order);
-        navigate("/");
+        await axios.post('http://localhost:8080/order', order);
+        navigate('/');
     };
     return (
         <div className="flex justify-center items-center mt-10">
@@ -334,7 +336,7 @@ const CustomerForm = () => {
                         Save Job
                     </button>
                     <Link
-                        to={"/"}
+                        to={'/'}
                         className="text-white bg-gradient-to-r from-red-500 via-red-600 to-red-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-6 py-2 text-center mr-2 mb-2"
                     >
                         Cancel

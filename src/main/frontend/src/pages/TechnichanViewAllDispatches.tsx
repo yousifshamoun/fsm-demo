@@ -55,12 +55,13 @@ const TechnichanViewAllDispatches = () => {
                                 <DispatchListItem
                                     index={index}
                                     date={order.date}
+                                    zip={order.zip}
                                     dispatchId={order.id}
                                     customerName={order.name}
                                     phone={order.phone}
                                     address={order.street}
                                     notes={order.tags}
-                                    status={order.priority}
+                                    status={order.status}
                                 />
                             ))}
                             {/* {orders.map((order: any, index) => (
