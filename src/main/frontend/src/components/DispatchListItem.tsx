@@ -11,7 +11,7 @@ type DispatchListItemProps = {
     notes: string;
     status: string;
 };
-const getSVG = (status: string) => {
+export const getSVG = (status: string) => {
     switch (status) {
         case 'new':
             return (
@@ -74,7 +74,6 @@ const getSVG = (status: string) => {
     }
 };
 const DispatchListItem = (props: DispatchListItemProps) => {
-    console.log(props.index);
     return (
         <tr
             className={`${
