@@ -44,7 +44,6 @@ const ViewOrder = () => {
     useEffect(() => {
         loadUser();
     }, []);
-
     const loadUser = async () => {
         const result = await axios.get(`http://localhost:8080/order/${id}`);
         setOrder(result.data);
@@ -52,12 +51,12 @@ const ViewOrder = () => {
     const onInputChange = (e: any) => {
         setOrder({
             ...order,
-            [e.target.name]: e.target.value,
+            [e.target.name]: parseOption(e.target.value),
         });
     };
     const onSubmit = async (e: any) => {
-        e.preventDefault();
-        await axios.put(`http://localhost:8080/order/${id}`);
+        await axios.put(`http://localhost:8080/order/${id}`, order);
+        handleDialogue(false);
     };
     const Items = [
         ['Customer Name', name],
@@ -69,12 +68,38 @@ const ViewOrder = () => {
         ['Priority', priority],
         ['Unit', business_unit],
     ];
+    const parseOption = (s: string): string => {
+        if (s === 'New') {
+            return 'new';
+        } else if (s === 'In Progress') {
+            return 'inProgress';
+        } else if (s === 'Completed') {
+            return 'completed';
+        } else {
+            throw new Error('Invalid Option Being Parsed');
+        }
+    };
+    const parseValue = (s: string): string => {
+        if (s === 'new') {
+            return 'New';
+        } else if (s === 'inProgress') {
+            return 'In Progress';
+        } else if (s === 'completed') {
+            return 'Completed';
+        } else {
+            throw new Error('Invalid Value Being Parsed');
+        }
+    };
     function DialogueBox() {
         return (
             <div>
                 <div className="bg-black/[.6] inset-0 fixed"></div>
+
                 <div className="inset-y-1/3 inset-x-1/4 fixed bg-white rounded flex flex-wrap p-4">
-                    <div className="ml-auto mr-0">
+                    <div
+                        className="ml-auto mr-0 cursor-pointer h-0"
+                        onClick={() => handleDialogue(false)}
+                    >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -101,13 +126,47 @@ const ViewOrder = () => {
                         </div>
                         <div className="flex-auto">
                             <p className="font-bold text-left ml-2">Status</p>
+                            <div className="relative">
+                                <select
+                                    className="first-letter:block appearance-none w-full bg-white border border-gray-400 py-2 px-4 pr-8 rounded leading-snug focus:outline-none focus:bg-white focus:border-gray-500 "
+                                    id="set-status"
+                                    value={parseValue(status)}
+                                    name="status"
+                                    onChange={(e) => onInputChange(e)}
+                                >
+                                    <option>New</option>
+                                    <option>In Progress</option>
+                                    <option>Completed</option>
+                                </select>
+                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                    <svg
+                                        className="fill-current h-4 w-4"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
                         <div className="flex-auto">
                             <p className="font-bold text-left ml-2">Add Note</p>
                         </div>
                     </div>
-                    <div className="w-full">
-                        <p className="font-bold text-xl">Update Dispatch</p>
+                    <div className=" ml-auto mr-0">
+                        <button
+                            className="font-bold text-sky-600 mr-4"
+                            onClick={() => handleDialogue(false)}
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            type="button"
+                            onClick={onSubmit}
+                            className="bg-sky-800 hover:bg-sky-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline"
+                        >
+                            Update Dispatch
+                        </button>
                     </div>
                 </div>
             </div>

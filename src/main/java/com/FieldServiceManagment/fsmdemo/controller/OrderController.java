@@ -55,6 +55,7 @@ public class OrderController {
                     order.setTechnician(newOrder.getTechnician());
                     order.setTags(newOrder.getTags());
                     order.setNotes(newOrder.getNotes());
+                    order.setStatus(newOrder.getStatus());
                     return orderRepository.save(order);
                 }).orElseThrow(
                         () -> new OrderNotFoundException(id));
