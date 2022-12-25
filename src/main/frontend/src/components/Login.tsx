@@ -1,10 +1,25 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 const Login = () => {
-    const [technician, setTechnician] = useState("");
+    const [technician, setTechnician] = useState('');
     const onInputChange = (e: any) => {
         setTechnician(e.target.value);
     };
+    const handleLogin = (s: string): void => {
+        if (s == 'technician') {
+            setTechnician('Ted');
+            setLink('/technician/Ted');
+        } else if (s == 'dispatch') {
+            setTechnician('Dispatch');
+            setLink('/dispatch');
+        } else if (s === 'manager') {
+            setTechnician('Manager');
+            setLink('/manager');
+        } else {
+            throw new Error('Invalid Login Option');
+        }
+    };
+    const [link, setLink] = useState('/');
     return (
         <div className="justify-center items-center flex">
             <form className="px-80 mx-20 mt-4 w-full">
@@ -39,15 +54,30 @@ const Login = () => {
                     />
                 </div>
                 <div className="flex items-center justify-between">
-                    <Link
-                        to={`/technician/${technician}`}
-                        className="text-left text-sm text-sky-900 hover:text-sky-700"
+                    <button
+                        type="button"
+                        onClick={() => handleLogin('dispatch')}
+                        className="rounded-xl bg-gray-300 p-2"
                     >
-                        Forgot Password?
-                    </Link>
+                        As Dispatch
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => handleLogin('technician')}
+                        className="rounded-xl bg-gray-300 p-2"
+                    >
+                        As Technician
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => handleLogin('manager')}
+                        className="rounded-xl bg-gray-300 p-2"
+                    >
+                        As Manager
+                    </button>
                 </div>
                 <Link
-                    to={"/dispatch"}
+                    to={link}
                     className="w-full mt-4 bg-sky-900 hover:bg-sky-700 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="button"
                 >

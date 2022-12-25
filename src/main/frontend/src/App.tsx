@@ -1,10 +1,11 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./App.css";
-import Dispatch from "./pages/Dispatch";
-import Technician from "./pages/Technician";
-import Home from "./pages/Home";
-import ViewOrder from "./pages/ViewOrder";
-import TechnichanViewAllDispatches from "./pages/TechnichanViewAllDispatches";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './App.css';
+import Dispatch from './pages/Dispatch';
+import Technician from './pages/Technician';
+import Manager from './pages/Manager';
+import Home from './pages/Home';
+import ViewOrder from './pages/ViewOrder';
+import TechnichanViewAllDispatches from './pages/TechnichanViewAllDispatches';
 function App() {
     return (
         <div className="App">
@@ -16,6 +17,7 @@ function App() {
                         path="/technician/:technician"
                         element={<Technician />}
                     />
+                    <Route path="/manager" element={<Manager />}></Route>
                     <Route
                         path="/dispatchlist/:technician"
                         element={<TechnichanViewAllDispatches />}

@@ -15,7 +15,7 @@ export const getSVG = (status: string) => {
     switch (status) {
         case 'new':
             return (
-                <div className="flex items-center bg-yellow-200 rounded-xl justify-center p-1 px-auto font-bold text-amber-900 text-xs w-2/3">
+                <div className="flex items-center bg-yellow-200 rounded-xl justify-center p-1 px-2 font-bold text-amber-900 text-xs w-fit">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -35,7 +35,7 @@ export const getSVG = (status: string) => {
             );
         case 'inProgress':
             return (
-                <div className="flex items-center bg-yellow-200 rounded-xl justify-center p-1 px-2 font-bold text-amber-900 text-xs">
+                <div className="flex items-center bg-yellow-200 rounded-xl justify-center p-1 px-2 font-bold text-amber-900 text-xs w-fit">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -55,7 +55,7 @@ export const getSVG = (status: string) => {
             );
         case 'completed':
             return (
-                <div className="flex items-center bg-green-200 rounded-xl justify-center p-1 px-2 font-bold text-xs">
+                <div className="flex items-center bg-green-200 rounded-xl justify-center p-1 px-2 font-bold text-xs w-fit">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"

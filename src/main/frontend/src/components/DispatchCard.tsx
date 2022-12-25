@@ -1,4 +1,3 @@
-import React from 'react';
 type DispatchCardProps = {
     svg: any;
     numberOfItems: number;
